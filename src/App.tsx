@@ -1,5 +1,6 @@
 // import { useState } from 'react'
 import './App.css'
+import HeyMessage from './components/HeyMessage'
 import NavBar from './components/NavBar'
 
 function App() {
@@ -8,16 +9,18 @@ function App() {
   return (
     <body className="app">
       <NavBar />
-      <div>
-        <p>Hey, Handsome</p>
-      </div>
-      <h1>MAN*LY</h1>
-      <div className="card">
-        {/* <button onClick={() => setCount((count) => count + 1)}> */}
+      <section className='Hey-Message'>
+        <HeyMessage />
+      </section>
+      <section className='Landing-Section'>
+        <h1 className='Landing-Logo'>MAN*LY</h1>
         <button>
           Redefining Masculinity through Mental Health, Mentorship, and More
         </button>
-      </div>
+      </section>
+      <footer className='App-Footer'>
+        <p>Dear Men, We love you. -Love, Women</p>
+      </footer>
     </body>
   )
 }
