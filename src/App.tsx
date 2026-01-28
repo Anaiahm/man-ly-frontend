@@ -1,11 +1,13 @@
 // import { useState } from 'react'
 import './App.css'
+import NavBar from './components/NavBar'
 
 function App() {
   // const [count, setCount] = useState(0)
 
   return (
     <body className="app">
+      <NavBar />
       <div>
         <p>Hey, Handsome</p>
       </div>
@@ -13,7 +15,7 @@ function App() {
       <div className="card">
         {/* <button onClick={() => setCount((count) => count + 1)}> */}
         <button>
-          Some Meaningful Message
+          Redefining Masculinity through Mental Health, Mentorship, and More
         </button>
       </div>
     </body>

@@ -1,0 +1,28 @@
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 0.5rem 1rem;
+    display: flex;
+}
+
+#Logo {
+    height: 30px;
+}
+
+button{
+    margin-right: 1rem;
+    background-color: transparent;
+    border: 2px solid white;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.nav-buttons {
+    float: right;
+    margin-right: 1rem;
+    margin-left: auto;
+}
