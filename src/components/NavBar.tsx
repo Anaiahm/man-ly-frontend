@@ -6,7 +6,7 @@ import './NavBar.css';
 function NavBar() {
   return (
     <nav className="navbar">
-      <img id="Logo" src="/src/assets/images/ManlyLogo.jpg" alt="Manly Logo" />
+      <img id="Logo" src='https://imgur.com/qFsePfo.png' alt="Manly Logo" />
       <section className="nav-buttons">
         <SignInButton />
         <SignUpButton />
