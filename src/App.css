@@ -58,7 +58,10 @@ footer {
 
   footer {
     font-size: 11px;
-    padding: 0.5rem;
+    padding: 0.1rem;
+  }
+  footer p {
+    font-size: 9px;
   }
 
   p {
