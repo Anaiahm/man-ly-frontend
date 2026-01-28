@@ -26,3 +26,47 @@ footer {
   text-align: center;
   border-top: .5px solid #333;
 }
+
+/* Mobile Responsive Design */
+@media (max-width: 768px) {
+  #root {
+    padding: 1rem;
+  }
+
+  .Landing-Logo {
+    font-size: 60px;
+    margin-top: 30px;
+    margin-bottom: 15px;
+  }
+
+  footer {
+    font-size: 12px;
+    padding: 1rem 0.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  #root {
+    padding: 0.5rem;
+  }
+
+  .Landing-Logo {
+    font-size: 40px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+  }
+
+  footer {
+    font-size: 11px;
+    padding: 0.5rem;
+  }
+
+  p {
+    font-size: 20px;
+  }
+
+  button {
+    font-size: 14px;
+    padding: 0.5rem 1rem;
+  }
+}
