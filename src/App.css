@@ -5,8 +5,11 @@
   text-align: center;
 }
 
-.app {
+* {
   background-color: black;
+}
+
+.app {
   color: white;
 }
 
@@ -25,6 +28,10 @@ footer {
   padding: 0rem;
   text-align: center;
   border-top: .5px solid #333;
+}
+
+.Api-Message {
+  color: white;
 }
 
 /* Mobile Responsive Design */
