@@ -1,4 +1,3 @@
-// import ManlyLogo from '../images/ManlyLogo';
 import SignInButton from './SignInButton';
 import SignUpButton from './SignUpButton';
 import './NavBar.css';

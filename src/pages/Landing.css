@@ -1,0 +1,49 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+* {
+  background-color: black;
+  color: white;
+}
+
+.Landing-Logo {
+  font-size: 100px;
+  margin-top: 50px;
+  margin-bottom: 20px;
+}
+
+
+.Api-Message {
+  color: white;
+}
+
+/* Mobile Responsive Design */
+@media (max-width: 768px) {
+  .Landing-Logo {
+    font-size: 60px;
+    margin-top: 30px;
+    margin-bottom: 15px;
+  }
+
+}
+
+@media (max-width: 480px) {
+  .Landing-Logo {
+    font-size: 40px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+  }
+
+  p {
+    font-size: 20px;
+  }
+
+  button {
+    font-size: 14px;
+    padding: 0.5rem 1rem;
+  }
+}

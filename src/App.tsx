@@ -1,36 +1,23 @@
-// import { useState } from 'react'
-import { useEffect, useState } from 'react'
-import './App.css'
-import HeyMessage from './components/HeyMessage'
-import NavBar from './components/NavBar'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import './App.css';
+import NavBar from './components/NavBar';
+import Footer from './components/Footer';
+import Landing from './pages/Landing';
+import SignIn from './pages/SignIn';
+import SignUp from './pages/SignUp';
 
 function App() {
-  // const [count, setCount] = useState(0)
-    const [apiMessage, setApiMessage] = useState('')
-
-  useEffect(() => {
-    fetch(`${import.meta.env.VITE_API_BASE_URL}/`)
-      .then(res => res.text())
-      .then(data => setApiMessage(data))
-      .catch(err => console.error(err))
-  }, [])
 
   return (
-    <div className="app">
+    <Router>
       <NavBar />
-      <section className='Hey-Message'>
-        <HeyMessage />
-      </section>
-      <section className='Landing-Section'>
-        <h1 className='Landing-Logo'>MAN*LY</h1>
-        <button className='Api-Message'>
-          {apiMessage}
-        </button>
-      </section>
-      <footer className='App-Footer'>
-        <p>Dear Men, We love you. -Love, Women</p>
-      </footer>
-    </div>
+      <Routes>
+        <Route path="/" element={<Landing />} />
+        <Route path="/signin" element={<SignIn />} />
+        <Route path="/signup" element={<SignUp />} />
+      </Routes>
+      <Footer />
+    </Router>
   )
 }
 
