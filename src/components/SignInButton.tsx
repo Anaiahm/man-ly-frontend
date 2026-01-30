@@ -1,6 +1,12 @@
-function SignInButton({}: {}) {
+import './NavSignInButton.css';
+
+type Props = {
+    onClick: () => void;
+};
+
+function SignInButton({ onClick }: Props) {
     return (
-        <button className="sign-in-button">
+        <button onClick={onClick}>
             Sign In
         </button>
     );

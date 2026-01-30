@@ -1,6 +1,16 @@
-function SignIn() {
+import SignInButton from '../components/SignInButton';
+
+type SignInProps = {
+  onLogin: () => void;
+};
+
+function SignIn({ onLogin }: SignInProps) {
   return (
-    <div>SignIn Page</div>
+    <div>
+        <p> SignIn Page</p>
+        <SignInButton onClick={onLogin} />
+    </div>
+
   )
 }
 
