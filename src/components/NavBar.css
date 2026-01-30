@@ -11,6 +11,11 @@
     height: 30px;
 }
 
+#logo-button {
+    border: none;
+    border-color: transparent;
+}
+
 button{
     margin-right: 1rem;
     background-color: transparent;

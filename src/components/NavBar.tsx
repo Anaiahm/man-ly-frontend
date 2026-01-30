@@ -20,7 +20,7 @@ function NavBar({ auth, onLogout }: NavBarProps) {
 
   return (
     <nav className="navbar">
-      <button onClick={() => Navigate('/')}>
+      <button id='logo-button' onClick={() => Navigate('/')}>
         <img id="Logo" src='https://imgur.com/qFsePfo.png' alt="Manly Logo" />
       </button>
       <section className="nav-buttons">
