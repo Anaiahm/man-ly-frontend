@@ -1,7 +1,10 @@
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import type { Provider } from '../types/provider';
 import { fetchCareTeam, removeFromCareTeam } from '../api/careTeam';
+import './UserDashboard.css';
+
+const MIN_CARE_TEAM_SIZE = 1;
 
 function UserDashboard() {
   const { userId } = useParams();
@@ -21,7 +24,9 @@ function UserDashboard() {
         const data = await fetchCareTeam();
         if (!cancelled) setProviders(data);
       } catch (e) {
-        if (!cancelled) setError(e instanceof Error ? e.message : 'Unknown error');
+        if (!cancelled) {
+          setError(e instanceof Error ? e.message : 'Unknown error');
+        }
       } finally {
         if (!cancelled) setLoading(false);
       }
@@ -43,39 +48,51 @@ function UserDashboard() {
     }
   };
 
+  const needsProviders = !loading && !error && providers.length < MIN_CARE_TEAM_SIZE;
+  const hasProviders = !loading && !error && providers.length > 0;
+  const providerSearchPath = userId ? `/${userId}/provider-search` : '/signin';
+
   return (
     <>
-      <div style={{ padding: 16 }}>
+      <div className="dashboard-header">
         <h1>Hey, Man*ly Man!</h1>
-        <p style={{ opacity: 0.8 }}>User ID: {userId}</p>
+        <p className="dashboard-subtle">User ID: {userId}</p>
       </div>
 
-      <div style={{ padding: 16 }}>
+      <div className="Care-Team-Section">
         <h2>Your Care Team!</h2>
 
-        {loading ? <p>Loading your care team...</p> : null}
-        {error ? <p style={{ color: 'tomato' }}>{error}</p> : null}
+        {hasProviders && (
+          <p className="care-team__helper">
+            Click “View Info” on a provider to see details.
+          </p>
+        )}
 
-        {!loading && !error && providers.length === 0 ? (
-          <p>You don’t have any providers on your care team yet.</p>
-        ) : null}
+        {needsProviders && (
+          <div className="care-team__cta">
+            <p className="care-team__status">
+              Your care team is empty — add your first provider to get started.
+            </p>
 
-        {!loading && !error && providers.length > 0 ? (
-          <div style={{ display: 'flex', gap: 16, alignItems: 'flex-start' }}>
-            {/* LEFT: list */}
-            <ul style={{ listStyle: 'none', padding: 0, margin: 0, minWidth: 320 }}>
+            <Link className="care-team__addLink" to={providerSearchPath}>
+              + Add Providers
+            </Link>
+          </div>
+        )}
+
+        {loading && <p className="care-team__status">Loading your care team...</p>}
+        {error && <p className="care-team__error">{error}</p>}
+
+        {hasProviders && (
+          <div className="care-team__layout">
+            {/* LEFT: provider list */}
+            <ul className="care-team__list">
               {providers.map((p) => (
-                <li
-                  key={p.id}
-                  style={{
-                    padding: '10px 0',
-                    borderBottom: '1px solid rgba(0,0,0,0.12)',
-                  }}
-                >
-                  <div style={{ fontWeight: 700 }}>{p.name}</div>
-                  <div style={{ opacity: 0.85 }}>{p.title}</div>
+                <li key={p.id} className="care-team__item">
+                  <div className="care-team__name">{p.name}</div>
+                  <div className="care-team__title">{p.title}</div>
 
-                  <div style={{ marginTop: 8, display: 'flex', gap: 8 }}>
+                  <div className="care-team__actions">
                     <button onClick={() => setSelected(p)}>View Info</button>
                     <button onClick={() => handleRemove(p.id)}>Remove</button>
                   </div>
@@ -84,24 +101,28 @@ function UserDashboard() {
             </ul>
 
             {/* RIGHT: detail panel */}
-            <div style={{ flex: 1, padding: 12, border: '1px solid rgba(0,0,0,0.12)' }}>
+            <div className="care-team__detail">
               {selected ? (
                 <>
-                  <h3 style={{ marginTop: 0 }}>{selected.name}</h3>
-                  <p><strong>Title:</strong> {selected.title}</p>
-                  <p><strong>Category:</strong> {selected.category}</p>
-                  <p style={{ marginTop: 12 }}>{selected.bio}</p>
+                  <h3 className="care-team__detailTitle">{selected.name}</h3>
+                  <p className="care-team__detailRow">
+                    <strong>Title:</strong> {selected.title}
+                  </p>
+                  <p className="care-team__detailRow">
+                    <strong>Category:</strong> {selected.category}
+                  </p>
+                  <p className="care-team__bio">{selected.bio}</p>
                 </>
               ) : (
-                <p>Click “View Info” on a provider to see details.</p>
+                <p className="care-team__status">Select a provider from the list.</p>
               )}
             </div>
           </div>
-        ) : null}
+        )}
       </div>
 
-      {/* Keep the rest hardcoded for MVP */}
-      <div style={{ padding: 16 }}>
+      {/* Hardcoded sections for MVP */}
+      <div className="dashboard-section">
         <h2>Your Upcoming Appointments</h2>
         <ul>
           <li>Appointment 1: June 15, 2024 at 10:00 AM with Dr. Smith</li>
@@ -109,7 +130,7 @@ function UserDashboard() {
         </ul>
       </div>
 
-      <div style={{ padding: 16 }}>
+      <div className="dashboard-section">
         <h2>Upcoming Man*ly Events</h2>
         <ul>
           <li>Event 1: Man*ly Health Fair - June 25, 2024</li>

@@ -1,12 +1,17 @@
-function ProfilePicture({ user }: { user: { id: string; name: string; profilePictureUrl?: string } }) {
-    const showMenu = () => {
-      // Placeholder for showing a dropdown menu or profile options
-      alert(`Profile options for ${user.name}`);
-    };
+import type { user } from '../types/auth';
+import PlaceholderPfp from '../assets/placeholder-pfp.png';
+
+type Props = {
+  user: user;
+  onClick?: () => void; // optional if you want the parent to control menu opening
+};
+
+function ProfilePicture({ user, onClick }: Props) {
   return (
     <img
-      onClick={showMenu}
-      src={user.profilePictureUrl || 'https://imgur.com/2hRFdtf.png'}
+      onClick={onClick}
+      // src={user.profilePhotoUrl || 'https://imgur.com/2hRFdtf.png'}
+      src={user.profilePhotoUrl || PlaceholderPfp}
       alt={`${user.name}'s profile`}
       style={{ width: '40px', height: '40px', borderRadius: '50%' }}
     />

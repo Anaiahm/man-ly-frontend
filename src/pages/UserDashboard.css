@@ -1,0 +1,142 @@
+/* General layout replacements for your old inline styles */
+
+.dashboard-header {
+  padding: 16px;
+}
+
+.dashboard-subtitle {
+  opacity: 0.8;
+}
+
+.dashboard-section {
+  padding: 16px;
+}
+
+/* --- Care Team upgraded section (MAN*LY theme) --- */
+
+.Care-Team-Section {
+  margin: 16px;
+  padding: 1.5rem;
+  background: #0e1626; /* deep navy */
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+}
+
+.Care-Team-Section h2 {
+  color: #f5f7fa;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  letter-spacing: 0.5px;
+}
+
+/* status + errors */
+.care-team__status {
+  color: rgba(245, 247, 250, 0.85);
+}
+
+.care-team__error {
+  color: tomato;
+}
+
+/* 2-column layout (keeps your same structure) */
+.care-team__layout {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+/* LEFT list column */
+.care-team__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  min-width: 320px;
+}
+
+/* provider row styled like a card */
+.care-team__item {
+  background: #1a2640;
+  border-radius: 10px;
+  padding: 1rem;
+  margin-bottom: 12px;
+
+  color: #e6e9ef;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.care-team__item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.35);
+}
+
+.care-team__name {
+  font-weight: 700;
+  color: #f5f7fa;
+}
+
+.care-team__title {
+  opacity: 0.85;
+  margin-top: 2px;
+}
+
+/* buttons */
+.care-team__actions {
+  margin-top: 10px;
+  display: flex;
+  gap: 8px;
+}
+
+.care-team__btn {
+  background: #111b2e;
+  color: #f5f7fa;
+  border: 1px solid rgba(245, 247, 250, 0.18);
+  padding: 8px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.care-team__btn:hover {
+  background: #16233b;
+}
+
+.care-team__btn--danger {
+  border-color: rgba(255, 99, 71, 0.45);
+  color: #ffd7d1;
+}
+
+.care-team__btn--danger:hover {
+  background: rgba(255, 99, 71, 0.12);
+}
+
+/* RIGHT detail panel */
+.care-team__detail {
+  flex: 1;
+  padding: 12px;
+  border-radius: 10px;
+  background: #111b2e;
+  border: 1px solid rgba(245, 247, 250, 0.14);
+  color: #e6e9ef;
+}
+
+.care-team__detailTitle {
+  margin-top: 0;
+  color: #f5f7fa;
+}
+
+.care-team__detailRow {
+  margin: 6px 0;
+  opacity: 0.95;
+}
+
+.care-team__bio {
+  margin-top: 12px;
+  opacity: 0.9;
+  line-height: 1.5;
+}
+
+.care-team__helper {
+  margin: 0 0 1rem;
+  color: rgba(245, 247, 250, 0.75);
+  font-size: 0.95rem;
+}

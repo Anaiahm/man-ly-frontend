@@ -1,0 +1,70 @@
+/* Container */
+.profile-menu {
+  position: relative;
+  display: inline-block;
+}
+
+/* Trigger button (profile picture) */
+.profile-menu__trigger {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+/* Avatar image */
+.profile-menu__avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #1a2640;
+}
+
+/* Dropdown container */
+.profile-menu__dropdown {
+  position: absolute;
+  top: 48px;
+  right: 0;
+  min-width: 160px;
+
+  background-color: #0e1626; /* DARK NAVY */
+  border: 1px solid #1a2640;
+  border-radius: 8px;
+
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+  z-index: 1000;
+}
+
+/* Dropdown items */
+.profile-menu__item {
+  width: 100%;
+  padding: 10px 14px;
+
+  background: transparent;
+  border: none;
+
+  text-align: left;
+  font-size: 0.95rem;
+  font-weight: 500;
+
+  color: #f5f7fa; /* BRIGHT TEXT */
+  cursor: pointer;
+}
+
+/* Hover state */
+.profile-menu__item:hover {
+  background-color: #1a2640; /* SLIGHTLY LIGHTER NAVY */
+  color: #ffffff;
+}
+
+/* Logout button */
+.profile-menu__item.danger {
+  color: #ff6b6b; /* RED */
+}
+
+/* Logout hover */
+.profile-menu__item.danger:hover {
+  background-color: rgba(255, 107, 107, 0.15);
+  color: #ffdada;
+}

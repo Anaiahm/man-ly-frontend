@@ -1,8 +1,9 @@
 import NavSignInButton from './NavSignInButton';
 import NavSignUpButton from './NavSignUpButton';
-import NavSignOutButton from './NavSignOutButton';
-import ProfilePicture from './ProfilePicture';
+// import NavSignOutButton from './NavSignOutButton';
+// import ProfilePicture from './ProfilePicture';
 import DashboardLink from './DashboardLink';
+import ProfileMenu from './ProfileMenu';
 import type { AuthState } from '../types/auth';
 import { useNavigate } from 'react-router-dom';
 import './NavBar.css';
@@ -15,10 +16,10 @@ export type NavBarProps = {
 function NavBar({ auth, onLogout }: NavBarProps) {
   const Navigate = useNavigate();
 
-  const handleLogout = () => {
-    onLogout();
-    Navigate('/');
-}
+//   const handleLogout = () => {
+//     onLogout();
+//     Navigate('/');
+// }
 
   return (
     <nav className="navbar">
@@ -33,9 +34,10 @@ function NavBar({ auth, onLogout }: NavBarProps) {
           </>
         ) : (
           <>
-          <ProfilePicture user={auth.user!} />
+          {/* <ProfilePicture user={auth.user!} /> */}
           <DashboardLink userId={auth.user!.id} />
-          <NavSignOutButton onClick={handleLogout} />
+          <ProfileMenu auth={auth} onLogout={onLogout} />
+          {/* <NavSignOutButton onClick={handleLogout} /> */}
           </>
         )}
       </section>
