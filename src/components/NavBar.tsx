@@ -7,6 +7,7 @@ import ProfileMenu from './ProfileMenu';
 import type { AuthState } from '../types/auth';
 import { useNavigate } from 'react-router-dom';
 import './NavBar.css';
+// import AboutPageButton from './AboutPageButton';
 
 export type NavBarProps = {
   auth: AuthState;
@@ -29,15 +30,16 @@ function NavBar({ auth, onLogout }: NavBarProps) {
       <section className="nav-buttons">
         {!auth.isAuthenticated ? (
           <>
-          <NavSignInButton/>
-          <NavSignUpButton />
+            {/* <AboutPageButton /> */}
+            <NavSignInButton/>
+            <NavSignUpButton />
           </>
         ) : (
           <>
-          {/* <ProfilePicture user={auth.user!} /> */}
-          <DashboardLink userId={auth.user!.id} />
-          <ProfileMenu auth={auth} onLogout={onLogout} />
-          {/* <NavSignOutButton onClick={handleLogout} /> */}
+            {/* <ProfilePicture user={auth.user!} /> */}
+            <DashboardLink userId={auth.user!.id} />
+            <ProfileMenu auth={auth} onLogout={onLogout} />
+            {/* <NavSignOutButton onClick={handleLogout} /> */}
           </>
         )}
       </section>

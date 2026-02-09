@@ -11,6 +11,8 @@ import SignUp from './pages/SignUp';
 import UserDashboard from './pages/UserDashboard';
 import Settings from './pages/Settings';
 import ProviderSearch from './pages/ProviderSearch';
+import About from './pages/About';
+import ProviderInterest from './pages/ProviderInterest';
 
 function App() {
   const [auth, setAuth] = useState<AuthState>({
@@ -66,6 +68,8 @@ function App() {
 
       <Routes>
         <Route path="/" element={<Landing />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/providerinterest" element={<ProviderInterest />} />
         <Route
           path="/signin"
           element={<SignIn onLogin={mockLogin} authUserId={auth.user?.id || '1'} />}
