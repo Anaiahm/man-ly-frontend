@@ -1,5 +1,8 @@
 .provider-search {
   padding: 24px;
+  max-width: 1100px;
+  margin: 0 auto;
+  color: #111;
 }
 
 .provider-search h1 {
@@ -8,24 +11,208 @@
 
 .provider-search p {
   opacity: 0.8;
+  margin-bottom: 14px;
 }
 
+.error {
+  color: #b00020;
+  font-weight: 700;
+}
+
+.empty {
+  opacity: 0.85;
+  font-weight: 600;
+  margin-top: 8px;
+}
+
+/* ----------------------------- */
+/* Toggle buttons (readable!)    */
+/* ----------------------------- */
+.filter-toggles {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
+
+  width: 100%;
+  max-width: 680px;
+
+  padding: 6px;
+  border-radius: 999px;
+
+  /* darker container so indicator contrast is obvious */
+  background: rgba(17, 17, 17, 0.06);
+  border: 1px solid rgba(17, 17, 17, 0.12);
+
+  margin: 10px 0 10px;
+}
+
+.filter-toggles button {
+  position: relative;
+  z-index: 1;
+
+  border: 0;
+  background: transparent;
+
+  padding: 10px 12px;
+  border-radius: 999px;
+
+  font-weight: 700;
+  font-size: 0.92rem;
+
+  cursor: pointer;
+  user-select: none;
+
+  /* ✅ ensure text is readable regardless of theme defaults */
+  color: rgba(17, 17, 17, 0.78);
+
+  transition: transform 120ms ease, opacity 120ms ease, color 120ms ease;
+}
+
+.filter-toggles button:hover {
+  color: rgba(17, 17, 17, 0.92);
+}
+
+.filter-toggles button:active {
+  transform: scale(0.98);
+}
+
+.filter-toggles button.active {
+  color: #111;
+}
+
+/* Sliding pill indicator (NOT white-on-white) */
+.filter-toggles .indicator {
+  position: absolute;
+  inset: 6px auto 6px 6px;
+
+  width: calc((100% - 18px) / 4);
+  border-radius: 999px;
+
+  /* ✅ light gray pill so black text is readable on top */
+  background: rgba(17, 17, 17, 0.10);
+
+  box-shadow:
+    0 6px 18px rgba(0, 0, 0, 0.08),
+    0 1px 0 rgba(0, 0, 0, 0.04);
+
+  transition: transform 220ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.filter-toggles[data-active="all"] .indicator {
+  transform: translateX(0%);
+}
+.filter-toggles[data-active="category"] .indicator {
+  transform: translateX(100%);
+}
+.filter-toggles[data-active="name"] .indicator {
+  transform: translateX(200%);
+}
+.filter-toggles[data-active="myCategories"] .indicator {
+  transform: translateX(300%);
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .filter-toggles .indicator,
+  .filter-toggles button {
+    transition: none;
+  }
+}
+
+/* ----------------------------- */
+/* ✅ Stable filter panel area   */
+/* prevents vertical jumping     */
+/* ----------------------------- */
+.filter-panel {
+  /* holds either category pills, name input, or nothing — without layout jump */
+  min-height: 64px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+/* Category buttons row */
+.filter-control {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.filter-control button {
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  background: #fff;
+  padding: 8px 12px;
+  border-radius: 999px;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: rgba(17, 17, 17, 0.85);
+
+  transition: transform 120ms ease, background 120ms ease, border-color 120ms ease;
+}
+
+.filter-control button:hover {
+  transform: translateY(-1px);
+  border-color: rgba(0, 0, 0, 0.28);
+}
+
+.filter-control button.active {
+  background: rgba(17, 17, 17, 0.08);
+  border-color: rgba(0, 0, 0, 0.28);
+  color: #111;
+}
+
+/* Name search input */
+.name-search {
+  width: 100%;
+  max-width: 420px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  outline: none;
+  font-size: 0.95rem;
+  color: #111;
+  background: #fff;
+}
+
+.name-search:focus {
+  border-color: rgba(0, 0, 0, 0.35);
+}
+
+/* ----------------------------- */
+/* Provider cards + stable grid  */
+/* ----------------------------- */
 .provider-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 16px;
-  margin-top: 24px;
+
+  /* helps reduce perceived "jump" when results change */
+  min-height: 70vh;
+  align-content: start;
+
+  margin-top: 10px;
 }
 
 .provider-card {
-  border: 1px solid rgba(0,0,0,0.15);
+  border: 1px solid rgba(0,0,0,0.12);
   padding: 16px;
-  border-radius: 8px;
+  border-radius: 14px;
   background: #fff;
+
+  box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+
+  display: flex;
+  flex-direction: column;
+}
+
+.provider-card h3 {
+  margin: 0 0 6px;
 }
 
 .provider-title {
-  font-weight: 600;
+  font-weight: 800;
   margin-bottom: 4px;
 }
 
@@ -37,9 +224,39 @@
 
 .provider-bio {
   font-size: 0.9rem;
+  line-height: 1.35;
   margin-bottom: 12px;
+
+  overflow: hidden;
+
+  /* standard + prefixed (covers more browsers and satisfies some tooling) */
+  line-clamp: 4;
+  -webkit-line-clamp: 4;
+
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
 }
 
 .provider-card button {
   width: 100%;
+  border: 0;
+  border-radius: 12px;
+  padding: 10px 12px;
+  font-weight: 800;
+  cursor: pointer;
+
+  background: rgba(0,0,0,0.9);
+  color: #fff;
+
+  transition: transform 120ms ease, opacity 120ms ease;
+
+  margin-top: auto;
+}
+
+.provider-card button:hover {
+  opacity: 0.92;
+}
+
+.provider-card button:active {
+  transform: scale(0.99);
 }
