@@ -1,6 +1,8 @@
 // SignUp.tsx
 import { useMemo, useState } from "react";
 import "./SignUp.css";
+import { useNavigate } from "react-router-dom";
+import { API_BASE_URL } from "../config";
 
 type Category = "Family" | "Finances" | "Mental Health" | "Career" | "Personal";
 type ThemeKey = "classic" | "earthy" | "bright";
@@ -41,6 +43,7 @@ export default function SignUp() {
   const [step, setStep] = useState<1 | 2 | 3 | 4>(1);
   const [form, setForm] = useState<FormState>(initialForm);
   const [error, setError] = useState<string>("");
+  const navigate = useNavigate();
 
   const stepTitle = useMemo(() => {
     switch (step) {
@@ -97,18 +100,47 @@ export default function SignUp() {
     }));
   }
 
-  function finish() {
-    setError("");
+  async function finish() {
+  setError("");
 
-    if (!form.name.trim()) return setError("Please enter your name.");
-    if (!form.username.trim()) return setError("Please choose a username.");
-    if (form.password.length < 8) return setError("Password must be at least 8 characters.");
-    if (!form.email.trim()) return setError("Please enter your email.");
+  if (!form.name.trim()) return setError("Please enter your name.");
+  if (!form.username.trim()) return setError("Please choose a username.");
+  if (!form.email.trim()) return setError("Please enter an email.");
+  if (form.password.length < 8)
+    return setError("Password must be at least 8 characters.");
 
-    console.log("Signup submitted (temporary):", form);
-  
+  try {
+    const res = await fetch(`${API_BASE_URL}/auth/signup`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        name: form.name.trim(),
+        username: form.username.trim(),
+        email: form.email.trim(),
+        password: form.password,
+      }),
+    });
+
+    if (!res.ok) {
+      const msg = await res.text();
+      setError(msg || "Signup failed.");
+      return;
+    }
+
+    const data: { userId: number; username: string; name: string } =
+      await res.json();
+
+    // MVP: store userId so refresh keeps them "logged in"
+    localStorage.setItem("userId", String(data.userId));
+    localStorage.setItem("username", data.username);
+
     setForm(initialForm);
     setStep(1);
+
+    navigate(`/${data.userId}/dashboard`);
+  } catch {
+    setError("Network error. Please try again.");
+  }
   }
 
   return (
