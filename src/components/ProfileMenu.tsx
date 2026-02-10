@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import type { AuthState } from '../types/auth';
 import './ProfileMenu.css';
+import DashboardLink from './DashboardLink';
 
 type ProfileMenuProps = {
   auth: AuthState;
@@ -64,6 +65,11 @@ function ProfileMenu({ auth, onLogout }: ProfileMenuProps) {
 
       {open && (
         <div className="profile-menu__dropdown" role="menu">
+            
+            <button className="profile-menu__item" role="menuitem" onClick={() => navigate(`/${userId}/dashboard`)}>
+              <DashboardLink />
+            </button>
+
           <button
             className="profile-menu__item"
             onClick={handleAddProviders}

@@ -1,9 +1,6 @@
-function DashboardLink({ userId }: { userId: string }) {
-    return (
-        <button onClick={() => window.location.href = `/${userId}/dashboard`}>
-            Dashboard
-        </button>
-    );
+function DashboardLink() {
+    // Presentational only: leave click handling to parent to avoid nested buttons
+    return <span>Dashboard</span>;
 }
 
 export default DashboardLink;

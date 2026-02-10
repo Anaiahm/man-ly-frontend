@@ -2,7 +2,7 @@ import NavSignInButton from './NavSignInButton';
 import NavSignUpButton from './NavSignUpButton';
 // import NavSignOutButton from './NavSignOutButton';
 // import ProfilePicture from './ProfilePicture';
-import DashboardLink from './DashboardLink';
+// import DashboardLink from './DashboardLink';
 import ProfileMenu from './ProfileMenu';
 import type { AuthState } from '../types/auth';
 import { useNavigate } from 'react-router-dom';
@@ -37,7 +37,7 @@ function NavBar({ auth, onLogout }: NavBarProps) {
         ) : (
           <>
             {/* <ProfilePicture user={auth.user!} /> */}
-            <DashboardLink userId={auth.user!.id} />
+            {/* <DashboardLink userId={auth.user!.id} /> */}
             <ProfileMenu auth={auth} onLogout={onLogout} />
             {/* <NavSignOutButton onClick={handleLogout} /> */}
           </>

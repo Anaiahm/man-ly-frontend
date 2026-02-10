@@ -3,6 +3,7 @@ import { Link, useParams } from 'react-router-dom';
 import type { Provider } from '../types/provider';
 import { fetchCareTeam, removeFromCareTeam } from '../api/careTeam';
 import './UserDashboard.css';
+import { API_BASE_URL } from '../config';
 
 const MIN_CARE_TEAM_SIZE = 1;
 
@@ -52,6 +53,7 @@ function UserDashboard() {
   const hasProviders = !loading && !error && providers.length > 0;
   const providerSearchPath = userId ? `/${userId}/provider-search` : '/signin';
 
+  console.log("API_BASE_URL =", API_BASE_URL);
   return (
     <>
       <div className="dashboard-header">
