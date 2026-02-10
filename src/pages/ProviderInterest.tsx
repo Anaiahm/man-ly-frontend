@@ -1,4 +1,4 @@
-import './providerInterest.css';
+import './ProviderInterest.css';
 
 function ProviderInterest() {
     return (
