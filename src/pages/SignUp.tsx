@@ -23,6 +23,7 @@ type FormState = {
   name: string;
   categories: Category[];
   username: string;
+  email: string;
   password: string;
   theme: ThemeKey;
 };
@@ -31,6 +32,7 @@ const initialForm: FormState = {
   name: "",
   categories: [],
   username: "",
+  email: "",
   password: "",
   theme: "classic",
 };
@@ -72,6 +74,10 @@ export default function SignUp() {
         setError("Password must be at least 8 characters.");
         return;
       }
+      if (!form.email.trim()) {
+        setError("Please enter your email.");
+        return;
+      }
     }
 
     setStep((prev) => (prev < 4 ? ((prev + 1) as typeof prev) : prev));
@@ -96,11 +102,11 @@ export default function SignUp() {
 
     if (!form.name.trim()) return setError("Please enter your name.");
     if (!form.username.trim()) return setError("Please choose a username.");
-    if (form.password.length < 8)
-      return setError("Password must be at least 8 characters.");
+    if (form.password.length < 8) return setError("Password must be at least 8 characters.");
+    if (!form.email.trim()) return setError("Please enter your email.");
 
     console.log("Signup submitted (temporary):", form);
-
+  
     setForm(initialForm);
     setStep(1);
   }
@@ -189,6 +195,15 @@ export default function SignUp() {
                 value={form.username}
                 onChange={(e) =>
                   setForm((p) => ({ ...p, username: e.target.value }))
+                }
+              />
+
+              <input 
+                className="signup-input"
+                placeholder="Email"
+                value={form.email}
+                onChange={(e) =>
+                  setForm((p) => ({ ...p, email: e.target.value }))
                 }
               />
 
