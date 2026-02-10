@@ -15,9 +15,11 @@ import About from './pages/About';
 import ProviderInterest from './pages/ProviderInterest';
 
 function App() {
-  const [auth, setAuth] = useState<AuthState>({
-    isAuthenticated: false,
-    user: null,
+  const [auth, setAuth] = useState<AuthState>(() => {
+    const stored = localStorage.getItem('authUser');
+    return stored
+      ? { isAuthenticated: true, user: JSON.parse(stored) }
+      : { isAuthenticated: false, user: null };
   });
 
   const [settings, setSettings] = useState<UserSettings>({
@@ -28,19 +30,21 @@ function App() {
     email: 'test@example.com',
   });
 
-  const mockLogin = () => {
+  // const authUserId = auth.user?.id ?? '';
+
+  const handleLogin = (user: AuthState['user']) => {
+    if (!user) return;
+
+    localStorage.setItem('authUser', JSON.stringify(user));
+
     setAuth({
       isAuthenticated: true,
-      user: {
-        id: '1',
-        name: settings.name,
-        email: settings.email,
-        profilePhotoUrl: settings.profilePhotoUrl,
-      },
+      user,
     });
-  };
+    };
 
-  const mockLogout = () => {
+  const handleLogout = () => {
+    localStorage.removeItem('authUser');
     setAuth({ isAuthenticated: false, user: null });
   };
 
@@ -64,7 +68,7 @@ function App() {
 
   return (
     <Router>
-      <NavBar auth={auth} onLogout={mockLogout} />
+      <NavBar auth={auth} onLogout={handleLogout} />
 
       <Routes>
         <Route path="/" element={<Landing />} />
@@ -72,7 +76,7 @@ function App() {
         <Route path="/providerinterest" element={<ProviderInterest />} />
         <Route
           path="/signin"
-          element={<SignIn onLogin={mockLogin} authUserId={auth.user?.id || '1'} />}
+          element={<SignIn onLogin={handleLogin} />}
         />
         <Route path="/signup" element={<SignUp />} />
 

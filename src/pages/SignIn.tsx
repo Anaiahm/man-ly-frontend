@@ -1,24 +1,53 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import SignInButton from '../components/SignInButton';
+import { API_BASE_URL } from '../config';
 
 type SignInProps = {
-  onLogin: (username?: string) => void;
-  authUserId: string;
+  onLogin: (user: { id: string; name: string; email: string; profilePhotoUrl: string }) => void;
 };
 
-function SignIn({ onLogin, authUserId }: SignInProps) {
+function SignIn({ onLogin }: SignInProps) {
   const navigate = useNavigate();
 
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleLogin = () => {
-    // Fake login — accept anything
-    onLogin(username);
+  const handleLogin = async () => {
+  try {
+    const res = await fetch(`${API_BASE_URL}/auth/login`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ username, password }),
+    });
 
-    navigate(`/${authUserId}/dashboard`);
+    if (!res.ok) {
+      const msg = await res.text();
+      alert(msg || 'Login failed');
+      return;
+    }
+
+    const data: { userId: number; username: string; name: string } = await res.json();
+
+    const user = {
+      id: String(data.userId),
+      name: data.name,
+      email: '', 
+      profilePhotoUrl: '', 
+    };
+    // persist login
+    localStorage.setItem('authUser', JSON.stringify(user));
+
+    // update app-level state (if you use it)
+    onLogin(user);
+
+    // navigate using the REAL userId from backend
+    navigate(`/${data.userId}/dashboard`);
+  } catch {
+    alert('Network error. Please try again.');
+  }
   };
+
 
   return (
     <div style={{ padding: 16, maxWidth: 400 }}>
