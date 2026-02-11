@@ -105,5 +105,6 @@ The following features are planned for future iterations of Man*ly:
 - **Micro-Animations**  
   Intentional, subtle animations throughout the application to enhance polish, improve feedback, and create moments of delight.
 
+
 - **Theme Preferences in Settings**  
   User-controlled theme customization within the Settings page to support personalization and accessibility.

@@ -5,7 +5,36 @@
   text-align: center;
 }
 
-* {
+/* Ensure full-height layout works */
+html, body, #root {
+  height: 100%;
+}
+
+/* Page-level scroll container that snaps to each section */
+.landing-page {
+  height: 100vh;
+  overflow-y: auto;
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+}
+
+/* Each main section fills the viewport and snaps into view */
+.landing-container,
+.about-section,
+.provider-interest-section {
+  height: 100vh;
+  min-height: 100vh;
+  scroll-snap-align: start;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  box-sizing: border-box;
+}
+
+/* Keep your color choices but avoid globally styling every element */
+body {
   background-color: black;
   color: white;
 }
@@ -15,7 +44,6 @@
   margin-top: 50px;
   margin-bottom: 20px;
 }
-
 
 .Api-Message {
   color: white;

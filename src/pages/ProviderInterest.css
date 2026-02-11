@@ -1,0 +1,74 @@
+/* Provider Interest page layout */
+.provider-interest {
+	max-width: 820px;
+	margin: 0 auto;
+	padding: 2rem 1rem;
+	color: inherit;
+}
+
+.provider-interest__header {
+	text-align: center;
+	margin-bottom: 1.5rem;
+}
+
+.provider-interest__intro {
+	max-width: 680px;
+	margin: 0.5rem auto 0;
+	line-height: 1.6;
+	color: rgba(255,255,255,0.9);
+}
+
+.provider-interest__form {
+	display: grid;
+	grid-template-columns: 1fr;
+	gap: 1rem;
+	margin-top: 1.5rem;
+}
+
+.field {
+	display: flex;
+	flex-direction: column;
+}
+
+.field label {
+	margin-bottom: 0.4rem;
+	font-weight: 600;
+}
+
+.field input {
+	padding: 0.6rem 0.8rem;
+	border-radius: 8px;
+	border: 1px solid rgba(255,255,255,0.12);
+	background: rgba(255,255,255,0.03);
+	color: inherit;
+}
+
+.actions {
+	display: flex;
+	justify-content: center;
+	margin-top: 0.5rem;
+	grid-column: 1 / -1; /* span full width so button centers in larger grid */
+}
+
+.submit-button {
+	padding: 0.6rem 1.2rem;
+	border-radius: 8px;
+	background: #646cff;
+	color: #fff;
+	border: none;
+	cursor: pointer;
+}
+
+.provider-interest__success {
+	text-align: center;
+	padding: 2rem 1rem;
+}
+
+@media (min-width: 720px) {
+	.provider-interest__form {
+		grid-template-columns: 1fr 1fr;
+	}
+	.field:nth-child(3) {
+		grid-column: 1 / -1;
+	}
+}

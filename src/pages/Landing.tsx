@@ -15,22 +15,24 @@ function Landing() {
   }, [])
 
   return (
-    <>
-    <div className="Landing-Container">
+    <main className="landing-page">
+      <section className="landing-container">
         <HeyMessage />
         <h1 className='Landing-Logo'>MAN*LY</h1>
         <button className='Api-Message'>
           {apiMessage}
         </button>
-    </div>
-    <div className="About-Section">
-        <h2>What is Manly?</h2>
+      </section>
+
+      <section className="about-section">
+        {/* <h2>What is Manly?</h2> */}
         <About />
-    </div>
-    <div className="Provider-Interest-Section">
+      </section>
+
+      <section className="provider-interest-section">
         <ProviderInterest />
-    </div>
-    </>
+      </section>
+    </main>
   )
 }
 
