@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import type { AuthState } from '../types/auth';
 import './ProfileMenu.css';
 import DashboardLink from './DashboardLink';
+import PlaceholderPfp from '../assets/images/PfpPlaceholder.png';
 
 type ProfileMenuProps = {
   auth: AuthState;
@@ -45,8 +46,7 @@ function ProfileMenu({ auth, onLogout }: ProfileMenuProps) {
     navigate(`/${userId}/provider-search`);
   };
 
-  const photoUrl =
-    auth.user.profilePhotoUrl || '/src/assets/images/PfpPlaceholder.png';
+  const photoUrl = auth.user.profilePhotoUrl || PlaceholderPfp;
 
   return (
     <div className="profile-menu" ref={ref}>

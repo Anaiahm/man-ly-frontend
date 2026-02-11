@@ -1,5 +1,5 @@
 import type { user } from '../types/auth';
-import PlaceholderPfp from '../assets/placeholder-pfp.png';
+import PlaceholderPfp from '../assets/images/PfpPlaceholder.png';
 
 type Props = {
   user: user;

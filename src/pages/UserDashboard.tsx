@@ -58,7 +58,7 @@ function UserDashboard() {
     <>
       <div className="dashboard-header">
         <h1>Hey, Man*ly Man!</h1>
-        <p className="dashboard-subtle">User ID: {userId}</p>
+        {/* <p className="dashboard-subtle">User ID: {userId}</p> */}
       </div>
 
       <div className="Care-Team-Section">
@@ -95,8 +95,8 @@ function UserDashboard() {
                   <div className="care-team__title">{p.title}</div>
 
                   <div className="care-team__actions">
-                    <button onClick={() => setSelected(p)}>View Info</button>
-                    <button onClick={() => handleRemove(p.id)}>Remove</button>
+                    <button className="care-team__btn" onClick={() => setSelected(p)}>View Info</button>
+                    <button className="care-team__btn care-team__btn--danger" onClick={() => handleRemove(p.id)}>Remove</button>
                   </div>
                 </li>
               ))}
