@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import SignInButton from '../components/SignInButton';
 import { API_BASE_URL } from '../config';
+import './SignIn.css';
 
 type SignInProps = {
   onLogin: (user: { id: string; name: string; email: string; profilePhotoUrl: string }) => void;
@@ -50,32 +51,40 @@ function SignIn({ onLogin }: SignInProps) {
 
 
   return (
-    <div style={{ padding: 16, maxWidth: 400 }}>
+    <div className="sign-in">
       <h1>Sign In</h1>
 
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-        <label>
-          Username
+      <form className="sign-in__form" onSubmit={(e) => { e.preventDefault(); handleLogin(); }}>
+        <div className="field">
+          <label htmlFor="username">Username</label>
           <input
+            id="username"
+            name="username"
             type="text"
             value={username}
             placeholder="Enter username"
             onChange={(e) => setUsername(e.target.value)}
+            required
           />
-        </label>
+        </div>
 
-        <label>
-          Password
+        <div className="field">
+          <label htmlFor="password">Password</label>
           <input
+            id="password"
+            name="password"
             type="password"
             value={password}
             placeholder="Enter password"
             onChange={(e) => setPassword(e.target.value)}
+            required
           />
-        </label>
+        </div>
 
-        <SignInButton onClick={handleLogin} />
-      </div>
+        <div className="actions">
+          <SignInButton onClick={handleLogin} />
+        </div>
+      </form>
     </div>
   );
 }

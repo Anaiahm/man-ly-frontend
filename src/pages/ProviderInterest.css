@@ -51,12 +51,18 @@
 }
 
 .submit-button {
+	/* Match the sign-in button: use the app's default button appearance */
 	padding: 0.6rem 1.2rem;
 	border-radius: 8px;
-	background: #646cff;
-	color: #fff;
-	border: none;
+	background-color: #1a1a1a; /* same as global button background */
+	color: inherit;
+	border: 1px solid transparent;
 	cursor: pointer;
+	transition: border-color 0.25s, background-color 0.15s;
+}
+
+.submit-button:hover {
+	border-color: #646cff;
 }
 
 .provider-interest__success {
