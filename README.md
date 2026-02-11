@@ -1,73 +1,109 @@
-# React + TypeScript + Vite
+# Man*ly Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Overview
 
-Currently, two official plugins are available:
+The Man*ly frontend is a React + TypeScript single-page application deployed on Netlify. It provides users with an interactive interface to browse providers, manage their care team, and personalize their experience.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+The frontend communicates with a deployed Spring Boot backend via RESTful API calls and dynamically renders data-driven content based on authentication state and user interaction.
 
-## React Compiler
+---
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Tech Stack
 
-## Expanding the ESLint configuration
+- **Framework:** React
+- **Language:** TypeScript
+- **Routing:** React Router
+- **State Management:** React Hooks (useState, useEffect)
+- **API Communication:** HTTP requests to deployed backend
+- **Styling:** CSS
+- **Deployment:** Netlify
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+TypeScript was used to improve type safety, reduce runtime errors, and strengthen understanding of structured data contracts between frontend and backend.
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+---
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## Application Architecture
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+The application follows a component-based architecture:
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+- **Pages** handle top-level routes (Landing, SignIn, SignUp, Dashboard, ProviderSearch, Settings, etc.).
+- **Reusable components** support layout and UI consistency.
+- **API calls** connect the frontend to a deployed backend.
+- **Authentication state** determines protected route access and conditional rendering.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+React Router enables client-side routing without full page reloads, creating a seamless user experience.
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+---
+
+## State & Data Flow
+
+The frontend manages:
+
+- Authentication state
+- Provider data
+- Care team data
+- User preferences
+
+Data is fetched from the backend using asynchronous requests and stored in component state. Side effects are handled using React lifecycle hooks.
+
+Conditional rendering ensures:
+
+- Protected routes only display when authenticated
+- UI updates reflect backend changes
+- Error and loading states are handled appropriately
+
+This structure reinforces a reactive, data-driven UI model.
+
+---
+
+## Key Features
+
+### Authentication State Management
+
+The application maintains authentication state and dynamically updates the UI based on login status. This required understanding how frontend state controls route access and user-specific rendering.
+
+### Dynamic Provider Filtering
+
+Users can filter providers by category, name, or personalized categories. This feature required conditional logic, controlled UI state, and synchronization between user interaction and rendered results.
+
+### Full-Stack Integration
+
+The frontend communicates with a deployed backend API. This includes handling asynchronous data fetching, error management, and debugging routing inconsistencies between development and production environments.
+
+---
+
+## Challenges & Growth
+
+Connecting the frontend to the deployed backend introduced real-world challenges, including CORS configuration and incorrect API base paths. Debugging these issues strengthened understanding of:
+
+- Environment configuration
+- HTTP request lifecycles
+- Browser security policies
+- Cross-layer debugging
+
+Managing authentication state and conditional rendering also required a deeper understanding of React’s reactive data model and TypeScript typing patterns.
+
+---
+
+## Future Improvements
+
+- Enhanced authentication and authorization handling
+- Improved UI transitions and micro-interactions
+- Expanded user personalization features
+- Performance optimizations for larger datasets
+
+## 🧊 Icebox 
+
+The following features are planned for future iterations of Man*ly:
+
+- **AI Reflection Buddy**  
+  A supportive, reflective AI companion designed to encourage self-awareness and guided reflection. This tool will focus on affirmation and thoughtful prompts rather than diagnostic or clinical advice.
+
+- **Mood-Based Theming**  
+  Dynamic visual themes that respond to user check-ins, allowing the interface to subtly reflect emotional states through color and atmosphere.
+
+- **Micro-Animations**  
+  Intentional, subtle animations throughout the application to enhance polish, improve feedback, and create moments of delight.
+
+- **Theme Preferences in Settings**  
+  User-controlled theme customization within the Settings page to support personalization and accessibility.
